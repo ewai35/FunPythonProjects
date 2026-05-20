@@ -1,0 +1,30 @@
+#PopCat button GUI
+
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+
+# Create the main window
+root = tk.Tk()
+label = tk.Label(root, text = "Boop the cat!", fg = '#CD5182', font = ("Arial", 20, "bold"))
+label.pack()
+root.title("Catto")
+
+new_img = tk.PhotoImage(file = "/Users/ethel/PythonFiles/PracticeApp/images.png")
+button_img = tk.PhotoImage(file = "/Users/ethel/PythonFiles/PracticeApp/download.png")
+
+
+#First cat boops
+def first_boops():
+    button.config(image = new_img, command = second_boops)
+
+#Second boops:
+def second_boops():
+    button.config(image = button_img, command = first_boops)
+
+# Original button
+button = tk.Button(root, image = button_img , command=first_boops)
+button.pack(pady=20) #adds 20 pixels below and above the button for spacing 
+
+# Start the GUI loop
+root.mainloop()
