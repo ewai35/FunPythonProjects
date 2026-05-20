@@ -1,0 +1,46 @@
+#Word guessing game 
+
+import random #package that picks a random number out of a specified list 
+
+#Initial print and input by user 
+name = input("What is your name?")
+print("Have fun !" , name)
+
+#List of choices that the person can pick from as accurate choices
+fruit_list = ["strawberry", "apple", "banana", "tomato", "orange", "grapes"]
+fruit = random.choice(fruit_list) #randomized selection of words from the game 
+
+print("Guess the fruits!")
+
+guesses = '' #Empty string to collect all the guesses the person makes
+turns = 12 #Turns that the person has to make the guesses 
+
+#Main game loop: 
+while turns > 0: #accumulates the number of turns 
+
+    failed = 0 #counter for the number of characters that have been wrong
+    for character in fruit: 
+            if character in guesses: #if the character is in the person's "guesses" string
+                print(character, end=" ")
+            else: 
+                print (end =" _") #else indicates that if the person's guess is wrong, then the underscore will show as missing letter
+                failed += 1 #failure counter is added up by one 
+            
+    if failed == 0:
+        print("You Win")
+        print("The word is: ", fruit)
+        break
+    
+    print()
+    guess = input("guess a character:") #If the person did not get it in the first guess
+
+    guesses += guess #the guessed character is added to the guesses string
+    
+#Handling incorrect guesses: 
+    if guess not in fruit:
+            turns -=1 #subtract from original guess counter
+            print ("Wrong!")
+            print("You have", + turns, 'more guesses')
+    
+            if turns == 0: #if you reach 0 in the turn counter
+                print ("you lost :(") 
